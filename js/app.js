@@ -17,15 +17,23 @@
  * Define Global Variables
  * 
 */
-
+const navbar = document.querySelector('#navbar__list');
+const sections = document.querySelectorAll('section')
 
 /**
  * End Global Variables
  * Start Helper Functions
  * 
 */
-
-
+function addSections(navbar, num) {
+    // loop through sections
+    for (let i = 1; i <= num; i++) {
+        let section = document.createElement('li');
+        section.className = 'menu__link';
+        section.innerText = 'Section ' + i;
+        navbar.appendChild(section);
+    }
+}
 
 /**
  * End Helper Functions
@@ -34,7 +42,7 @@
 */
 
 // build the nav
-
+addSections(navbar, sections.length);
 
 // Add class 'active' to section when near top of viewport
 
