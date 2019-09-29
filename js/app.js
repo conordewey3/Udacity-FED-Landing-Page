@@ -25,15 +25,11 @@ const sections = document.querySelectorAll('section')
  * Start Helper Functions
  * 
 */
-function addSections(navbar, num) {
-    // loop through sections
-    for (let i = 1; i <= num; i++) {
-        let section = document.createElement('li');
-        section.className = 'menu__link';
-        section.innerText = 'Section ' + i;
-        navbar.appendChild(section);
-    }
-}
+
+// listens for click on nav
+function scrollToClick(clicked) {
+    clicked.scrollIntoView();
+};
 
 /**
  * End Helper Functions
@@ -42,12 +38,26 @@ function addSections(navbar, num) {
 */
 
 // build the nav
-addSections(navbar, sections.length);
+function addSections() {
+    for (let item of sections) {
+        let section = document.createElement('li');
+        section.className = 'menu__link';
+        section.dataset.nav = item.id;
+        section.innerText = item.dataset.nav;
+        navbar.appendChild(section);
+    };
+};
 
 // Add class 'active' to section when near top of viewport
 
 
 // Scroll to anchor ID using scrollTO event
+function listenForClicks() {
+    navbar.addEventListener('click', function (event) {
+        const clicked = document.querySelector('#' + event.target.dataset.nav)
+        scrollToClick(clicked);
+    });
+};
 
 
 /**
@@ -57,8 +67,10 @@ addSections(navbar, sections.length);
 */
 
 // Build menu 
+addSections();
 
 // Scroll to section on link click
+listenForClicks();
 
 // Set sections as active
 
